@@ -24,15 +24,17 @@
                             <div class="col-xl-12">
                                 <div class="auth-form">
                                     <div class="text-center mb-3">
-                                        <a href="index.html"><img src="{{asset('dashboard-asstes')}}/images/logo-full.png" alt=""></a>
+                                        <a href="index.html"><img
+                                                src="{{ asset('dashboard-asstes') }}/images/logo-full.png"
+                                                alt=""></a>
                                     </div>
                                     <h4 class="text-center mb-4 text-white">Sign in your account</h4>
                                     <form action="{{ route('login') }}" method="POST">
                                         @csrf
                                         <div class="form-group">
                                             <label class="mb-1 text-white"><strong>Email</strong></label>
-                                            <input type="email" class="form-control" value="hello@example.com"
-                                                name="email" value="{{ old('email') }}">
+                                            <input type="email" class="form-control" name="email"
+                                                value="{{ old('email') }}">
                                             @error('email')
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
@@ -41,8 +43,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label class="mb-1 text-white"><strong>Password</strong></label>
-                                            <input type="password" class="form-control" value="Password"
-                                                name="password">
+                                            <input type="password" class="form-control" name="password">
                                             @error('password')
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
@@ -70,7 +71,7 @@
                                     </form>
                                     <div class="new-account mt-3">
                                         <p class="text-white">Don't have an account? <a class="text-white"
-                                                href="{{route('register')}}">Sign up</a></p>
+                                                href="{{ route('register') }}">Sign up</a></p>
                                     </div>
                                 </div>
                             </div>
