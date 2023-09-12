@@ -85,7 +85,7 @@ class ProfileController extends Controller
         return back()->with('add_number','phone number added successfully');
     }
     public function phone_number_verify(){
-         $random_otp = rand(100,400);
+        $random_otp = rand(100,400);
 
         $text = "your otp code is".$random_otp;
         $number = auth()->user()->number;

@@ -25,7 +25,7 @@
                                 <div class="auth-form">
                                     <div class="text-center mb-3">
                                         <a href="index.html"><img
-                                                src="{{ asset('dashboard-asstes') }}/images/logo-full.png"
+                                                src="{{ asset('dashboard-assets') }}/images/logo-full.png"
                                                 alt=""></a>
                                     </div>
                                     <h4 class="text-center mb-4 text-white">Sign in your account</h4>
@@ -73,6 +73,11 @@
                                         <p class="text-white">Don't have an account? <a class="text-white"
                                                 href="{{ route('register') }}">Sign up</a></p>
                                     </div>
+                                    @if (session('permission'))
+                                    <div class="new-account mt-3">
+                                        <p class="text-danger">{{ session('permission') }}</p>
+                                    </div>
+                                    @endif
                                 </div>
                             </div>
                         </div>

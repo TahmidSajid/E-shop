@@ -13,12 +13,22 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Auth::routes();
+// frontend routes
+Route::get('/',[App\Http\Controllers\FrontendController::class,'index'])->name('index');
+Route::get('/about',[App\Http\Controllers\FrontendController::class,'about'])->name('about');
+Route::get('/user/register',[App\Http\Controllers\UserRegisterController::class,'user_register'])->name('user_register');
+Route::post('/user/account/register',[App\Http\Controllers\UserRegisterController::class,'user_account_register'])->name('user_account_register');
+Route::post('/user/account/verify',[App\Http\Controllers\UserRegisterController::class,'user_account_verify'])->name('user_account_verify');
+Route::get('/user/otp/verify',[App\Http\Controllers\FrontendController::class,'user_otp_verify'])->name('user_otp_verify');
+Route::post('/user/login',[App\Http\Controllers\UserRegisterController::class,'user_login'])->name('user_login');
+Route::get('/user/dashboard',[App\Http\Controllers\FrontendController::class,'user_dashboard'])->name('user_dashboard');
 
+// dashboard routes
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/profile', [App\Http\Controllers\ProfileController::class, 'profile_page'])->name('profile_page');
 Route::post('/profile/photo/upload',[App\Http\Controllers\ProfileController::class, 'profile_photo_upload']);
