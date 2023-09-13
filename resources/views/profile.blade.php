@@ -122,19 +122,19 @@
         @if (auth()->user()->status=='verified')
                 <div class="card">
                     <div class="card-header">
-                        <h4>Verify Your Number</h4>
+                        <h4>Your Number</h4>
                     </div>
                     <div class="card-body">
                         <div class="basic-form">
                             <h4>Your Phone Number: {{ auth()->user()->number }}</h4>
                             <p>Status : <span class=" text-success">{{ auth()->user()->status }}</span></p>
                         </div>
-                        @if (auth()->user()->update_limit==1)
+                        @if (auth()->user()->update_limit!=0)
                             <div class="basic-form">
                                 <a href="{{url('update/phone/number')}}" class="btn btn-info btn-sm">Update Phone Number</a>
                             </div>
                             <div class="basic-form">
-                                <p class="text-info">You have 1 chance remaining to update</p>
+                                <p class="text-info">You have {{ auth()->user()->update_limit }} chance remaining to update</p>
                             </div>
                         @else
                             <div class="basic-form">

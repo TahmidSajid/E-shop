@@ -18,12 +18,23 @@ class ProfileController extends Controller
     {
         if(Verifications::where('user_id',auth()->user()->id)->exists()){
             $usr_id = Verifications::where('user_id',auth()->user()->id)->first()->user_id;
-            return view('profile',compact('usr_id'));
+            // number will be added automatically
+            if(auth()->user()->number==null){
+                User::find(auth()->id())->update([
+                    'number'=> Verifications::where('user_id',auth()->user()->id)->first()->number,
+                    'status'=>'verified'
+                ]);
+                return view('profile',compact('usr_id'));
+            }
+            else{
+                return view('profile',compact('usr_id'));
+            }
         }
         else{
             $usr_id = false;
             return view('profile',compact('usr_id'));
         }
+        // *** done in class
         // if(Verifications::where('user_id',auth()->user()->id)->exists()){
         //     if(Verifications::where('user_id',auth()->user()->id)->first()->user_id==auth()->user()->id){
         //         $check_id = 1;
@@ -82,28 +93,36 @@ class ProfileController extends Controller
         User::find(auth()->id())->update([
             'number'=>$phone_number,
         ]);
+        if(Verifications::where('user_id',auth()->user()->id)->exists()){
+            Verifications::where('user_id',auth()->user()->id)->delete();
+        }
+        if(auth()->user()->status=="verified"){
+            User::find(auth()->id())->update([
+                'status'=>'unverified',
+            ]);
+        }
         return back()->with('add_number','phone number added successfully');
     }
     public function phone_number_verify(){
         $random_otp = rand(100,400);
 
-        $text = "your otp code is".$random_otp;
-        $number = auth()->user()->number;
-        $url = "http://66.45.237.70/api.php";
-        $data= array(
-        'username'=>"01834833973",
-        'password'=>"TE47RSDM",
-        'number'=>"$number",
-        'message'=>"$text"
-        );
+        // $text = "your otp code is : ".$random_otp;
+        // $number = auth()->user()->number;
+        // $url = "http://66.45.237.70/api.php";
+        // $data= array(
+        // 'username'=>"01834833973",
+        // 'password'=>"TE47RSDM",
+        // 'number'=>"$number",
+        // 'message'=>"$text"
+        // );
 
-        $ch = curl_init(); // Initialize cURL
-        curl_setopt($ch, CURLOPT_URL,$url);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        $smsresult = curl_exec($ch);
-        $p = explode("|",$smsresult);
-        $sendstatus = $p[0];
+        // $ch = curl_init(); // Initialize cURL
+        // curl_setopt($ch, CURLOPT_URL,$url);
+        // curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
+        // curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        // $smsresult = curl_exec($ch);
+        // $p = explode("|",$smsresult);
+        // $sendstatus = $p[0];
 
 
         $user_id = auth()->user()->id;
@@ -127,6 +146,7 @@ class ProfileController extends Controller
         if(Verifications::where('user_id',auth()->user()->id)->first()->OTP==$otp_no){
             User::find(auth()->id())->update([
                 'status'=> 'verified',
+                'update_limit'=> auth()->user()->update_limit-1,
             ]);
             return back();
         }
@@ -138,9 +158,8 @@ class ProfileController extends Controller
         User::find(auth()->user()->id)->update([
             'number'=>null,
             'status'=> 'unverified',
-            'update_limit'=> 0,
         ]);
-        Verifications::where('user_id',auth()->user()->id)->delete();
+        // Verifications::where('user_id',auth()->user()->id)->delete();
         return back();
     }
 }
