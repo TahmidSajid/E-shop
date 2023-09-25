@@ -788,7 +788,16 @@
                         <i class="flaticon-381-networking"></i>
                         <span class="nav-text">Profile</span>
                     </a>
-                </li>
+                    </li>
+                    <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+                        <i class="flaticon-381-networking"></i>
+                        <span class="nav-text">Category</span>
+                    </a>
+                    <ul aria-expanded="false">
+                        <li><a href="{{ route('category.index') }}">View Category</a></li>
+                        <li><a href="{{ route('category.create') }}">Add Category</a></li>
+                    </ul>
+                    </li>
                 </ul>
 				<div class="add-menu-sidebar">
 					<img src="images/calendar.png" alt="" class="mr-3">

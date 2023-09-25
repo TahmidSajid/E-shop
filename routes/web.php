@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -37,3 +38,4 @@ Route::post('/add/phone/number',[App\Http\Controllers\ProfileController::class, 
 Route::get('/verify/phone/number',[App\Http\Controllers\ProfileController::class, 'phone_number_verify']);
 Route::post('/verify/otp',[App\Http\Controllers\ProfileController::class, 'otp_verify']);
 Route::get('/update/phone/number',[App\Http\Controllers\ProfileController::class, 'update_phone_number']);
+Route::resource('category', CategoryController::class);

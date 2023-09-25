@@ -37,21 +37,21 @@ class UserRegisterController extends Controller
 
             $text = "your otp code is ".$random_otp;
             $number = auth()->user()->number;
-            $url = "http://66.45.237.70/api.php";
-            $data= array(
-            'username'=>"01834833973",
-            'password'=>"TE47RSDM",
-            'number'=>"$number",
-            'message'=>"$text"
-            );
+            // $url = "http://66.45.237.70/api.php";
+            // $data= array(
+            // 'username'=>"01834833973",
+            // 'password'=>"TE47RSDM",
+            // 'number'=>"$number",
+            // 'message'=>"$text"
+            // );
 
-            $ch = curl_init(); // Initialize cURL
-            curl_setopt($ch, CURLOPT_URL,$url);
-            curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-            $smsresult = curl_exec($ch);
-            $p = explode("|",$smsresult);
-            $sendstatus = $p[0];
+            // $ch = curl_init(); // Initialize cURL
+            // curl_setopt($ch, CURLOPT_URL,$url);
+            // curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
+            // curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            // $smsresult = curl_exec($ch);
+            // $p = explode("|",$smsresult);
+            // $sendstatus = $p[0];
 
 
             $user_id = auth()->user()->id;
@@ -80,7 +80,7 @@ class UserRegisterController extends Controller
             ]);
             Auth::logout();
             // echo auth()->user()->id;
-            return redirect()->route('user_register')->with('account_created','Your account have been created successfully');
+            return redirect()->route('user_register')->with('account_created','Your account have been created successfully. Enter your email and password');
         }
         else{
             return back();
@@ -92,8 +92,34 @@ class UserRegisterController extends Controller
             'password'=>'required',
         ]);
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password,])) {
-            return redirect()->route('index');
+            if(auth()->user()->status == "unverified"){
+                return redirect()->route('user_otp_verify');
+            }
+            else{
+                return redirect()->route('index');
+            }
         }
+        else{
+            return "login failed";
+        }
+
+
+
+
+
+
+        // return($request);
+        // if(is_numeric($request->email)){
+        //     if (Auth::attempt(['number' => $request->email, 'password' => $request->password,])) {
+        //         return redirect()->route('index');
+        //     }
+        // }
+        // else{
+        //     if (Auth::attempt(['email' => $request->email, 'password' => $request->password,])) {
+        //         return redirect()->route('index');
+        //     }
+        // }
+
     }
 
 }

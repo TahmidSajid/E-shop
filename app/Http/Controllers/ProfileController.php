@@ -24,15 +24,15 @@ class ProfileController extends Controller
                     'number'=> Verifications::where('user_id',auth()->user()->id)->first()->number,
                     'status'=>'verified'
                 ]);
-                return view('profile',compact('usr_id'));
+                return view('dashboard.profile',compact('usr_id'));
             }
             else{
-                return view('profile',compact('usr_id'));
+                return view('dashboard.profile',compact('usr_id'));
             }
         }
         else{
             $usr_id = false;
-            return view('profile',compact('usr_id'));
+            return view('dashboard.profile',compact('usr_id'));
         }
         // *** done in class
         // if(Verifications::where('user_id',auth()->user()->id)->exists()){

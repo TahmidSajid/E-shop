@@ -105,7 +105,7 @@
                                     <h3 class="input_title">User Email*</h3>
                                     <div class="form_item">
                                         <label for="username_input"><i class="fas fa-user"></i></label>
-                                        <input id="username_input" type="email" name="email" placeholder="E-mail">
+                                        <input id="username_input" type="emailcls" name="email" placeholder="E-mail">
                                     </div>
                                 </div>
 
