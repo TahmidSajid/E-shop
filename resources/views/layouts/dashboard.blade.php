@@ -798,6 +798,33 @@
                         <li><a href="{{ route('category.create') }}">Add Category</a></li>
                     </ul>
                     </li>
+                    <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+                        <i class="flaticon-381-networking"></i>
+                        <span class="nav-text">Products</span>
+                        @php
+                            {{
+                            $prods_array = array();
+                            foreach($products as $key=>$product){
+                                $prods_array[$key]=$product;
+                            }
+                            $uniqe = array_unique($prods_array);
+                        }}
+                        @endphp
+                    </a>
+                    <ul aria-expanded="false">
+                        @foreach ($uniqe as $product )
+                        <li>
+                            <a href="#">
+                                <form action="{{route('products')}}" method="POST">
+                                    @csrf
+                                    <input class="d-none" type="text" name="slug" value="{{ $product->category_slug }}">
+                                    <button style="background: none; border:0" type="submit">{{ $product->category_slug }}</button>
+                                </form>
+                                </a>
+                            </li>
+                        @endforeach
+                    </ul>
+                    </li>
                 </ul>
 				<div class="add-menu-sidebar">
 					<img src="images/calendar.png" alt="" class="mr-3">

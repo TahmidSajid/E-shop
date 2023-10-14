@@ -185,7 +185,7 @@
                                         <li><a class="nav-link" href="{{route('index')}}">Home</a></li>
                                         <li><a class="nav-link" href="{{route('about')}}">About us</a></li>
                                         <li><a class="nav-link" href="#">Shop</a></li>
-                                        <li><a class="nav-link" href="#">Contact Us</a></li>
+                                        <li><a class="nav-link" href="{{ route('contact') }}">Contact Us</a></li>
                                         @auth
                                             <li>
                                                 <a class="nav-link"><form action="{{ route('logout') }}" method="POST" class="">

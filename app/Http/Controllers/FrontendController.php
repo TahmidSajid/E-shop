@@ -6,6 +6,8 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\categories;
+use Illuminate\Support\Facades\Mail;
+Use App\Mail\ContactMail;
 
 class FrontendController extends Controller
 {
@@ -45,5 +47,12 @@ class FrontendController extends Controller
     }
     public function user_dashboard(){
         return view ('frontend.user-dashboard');
+    }
+    public function contact_page(){
+        return view ('frontend.contact_us');
+    }
+    public function contact_page_form(Request $request){
+        Mail::to($request->user())->send(new ContactMail());
+
     }
 }

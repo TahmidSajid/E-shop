@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\categories;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Nette\Utils\Arrays;
 
 class HomeController extends Controller
 {
