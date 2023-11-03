@@ -344,6 +344,7 @@
         <!-- footer_section - end
         ================================================== -->
 
+
     </div>
     <!-- body_wrap - end -->
 
@@ -362,7 +363,9 @@
     <!-- custom - main-js -->
     <script src="{{asset('frontend-assets')}}/js/main.js"></script>
     <script src="{{asset('frontend-assets')}}/js/main.js"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     {!! NoCaptcha::renderJs() !!}
+
+    @yield('alert')
 </body>
 </html>

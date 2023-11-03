@@ -130,3 +130,18 @@
 </main>
 @endsection
 
+@section('alert')
+@if (session('email_sent'))
+<script>
+Swal.fire({
+  position: 'top-end',
+  icon: 'success',
+  title: '{{ session('email_sent') }}',
+  showConfirmButton: false,
+  timer: 1500
+})
+
+    </script>
+@endif
+
+@endsection

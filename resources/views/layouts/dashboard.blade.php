@@ -825,6 +825,15 @@
                         @endforeach
                     </ul>
                     </li>
+                    <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+                        <i class="flaticon-381-networking"></i>
+                        <span class="nav-text">Users</span>
+                    </a>
+                    <ul aria-expanded="false">
+                        <li><a href="{{ route('admins.index') }}">Admins</a></li>
+                        <li><a href="{{ route('customers.index') }}">Customers</a></li>
+                    </ul>
+                    </li>
                 </ul>
 				<div class="add-menu-sidebar">
 					<img src="images/calendar.png" alt="" class="mr-3">

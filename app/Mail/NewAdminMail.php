@@ -9,17 +9,21 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class ContactMail extends Mailable
+class NewAdminMail extends Mailable
 {
     use Queueable, SerializesModels;
 
     /**
      * Create a new message instance.
      */
-    public $info;
-    public function __construct($x)
+    public $created_by ;
+    public $admin_mail ;
+    public $password ;
+    public function __construct($x,$y,$z)
     {
-        $this->info = $x;
+        $this->created_by = $x;
+        $this->admin_mail = $y;
+        $this->password = $z;
     }
 
     /**
@@ -28,7 +32,7 @@ class ContactMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Contact Mail',
+            subject: 'New Admin Mail',
         );
     }
 
@@ -38,13 +42,12 @@ class ContactMail extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'frontend.mail.mail',
+            view: 'dashboard.mail.account_activition',
             with:[
-                'name'=> $this->info['contact_name'],
-                'email'=> $this->info['contact_email'],
-                'subject'=> $this->info['contact_subject'],
-                'text'=> $this->info['contact_message'],
-            ],
+                'created_by'=> $this->created_by,
+                'email'=> $this->admin_mail,
+                'password'=>$this->password,
+            ]
         );
     }
 

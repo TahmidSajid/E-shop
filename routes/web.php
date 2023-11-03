@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CustomerListController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -42,5 +44,8 @@ Route::post('/verify/otp',[App\Http\Controllers\ProfileController::class, 'otp_v
 Route::get('/update/phone/number',[App\Http\Controllers\ProfileController::class, 'update_phone_number']);
 Route::post('/products',[App\Http\Controllers\ProductController::class, 'products_page'])->name('products');
 
+
 // category route package
 Route::resource('category', CategoryController::class);
+Route::resource('admins', UserController::class);
+Route::resource('customers', CustomerListController::class);
