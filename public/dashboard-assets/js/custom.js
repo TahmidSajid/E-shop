@@ -5,22 +5,22 @@ Core script to handle the entire theme and core functions
 var Gymove = function(){
 	/* Search Bar ============ */
 	var screenWidth = $( window ).width();
-	
+
 	var homeSearch = function() {
-		
+
 	}
-	
+
 	var handleSelectPicker = function(){
 		if(jQuery('.default-select').length > 0 ){
 			jQuery('.default-select').selectpicker();
 		}
 	}
-	
+
 	var handleTheme = function(){
 		$('#preloader').fadeOut(500);
 		$('#main-wrapper').addClass('show');
 	}
-	
+
 	var handleMetisMenu = function() {
 		if(jQuery('#menu').length > 0 ){
 			$("#menu").metisMenu();
@@ -32,13 +32,13 @@ var Gymove = function(){
 			}
 		});
 	}
-	
+
 	var handleAllChecked = function() {
 		$("#checkAll").on('change',function() {
 			$("td input:checkbox, .email-list .custom-checkbox input:checkbox").prop('checked', $(this).prop("checked"));
 		});
 	}
-	
+
 	var handleNavigation = function() {
 		$(".nav-control").on('click', function() {
 
@@ -47,7 +47,7 @@ var Gymove = function(){
 			$(".hamburger").toggleClass("is-active");
 		});
 	}
-	
+
 	var handleCurrentActive = function() {
 		for (var nk = window.location,
 			o = $("ul#menu a").filter(function() {
@@ -64,14 +64,14 @@ var Gymove = function(){
 				.addClass("mm-active");
 		}
 	}
-	
+
 	var handleCustomFileInput = function() {
 		$(".custom-file-input").on("change", function() {
 			var fileName = $(this).val().split("\\").pop();
 			$(this).siblings(".custom-file-label").addClass("selected").html(fileName);
 		});
 	}
-	
+
 	var handleMiniSidebar = function() {
 		$("ul#menu>li").on('click', function() {
 			const sidebarStyle = $('body').attr('data-sidebar-style');
@@ -81,7 +81,7 @@ var Gymove = function(){
 			}
 		})
 	}
-	
+
 	var handleMinHeight = function() {
 		var win_h = window.outerHeight;
 		var win_h = window.outerHeight;
@@ -89,7 +89,7 @@ var Gymove = function(){
 			$(".content-body").css("min-height", (win_h + 60) + "px");
 		};
 	}
-	
+
 	var handleDataAction = function() {
 		$('a[data-action="collapse"]').on("click", function(i) {
 			i.preventDefault(),
@@ -119,7 +119,7 @@ var Gymove = function(){
 				}, 2000)
 		});
 	}
-	
+
 	var handleHeaderHight = function() {
 		const headerHight = $('.header').innerHeight();
 		$(window).scroll(function() {
@@ -127,10 +127,10 @@ var Gymove = function(){
 				$(this.window).scrollTop() >= headerHight ? $('.deznav').addClass('fixed') : $('.deznav').removeClass('fixed')
 		});
 	}
-	
+
 	var handleDzScroll = function() {
 		jQuery('.dz-scroll').each(function(){
-		
+
 			var scroolWidgetId = jQuery(this).attr('id');
 			const ps = new PerfectScrollbar('#'+scroolWidgetId, {
 			  wheelSpeed: 2,
@@ -139,7 +139,7 @@ var Gymove = function(){
 			});
 		})
 	}
-	
+
 	var handleMenuTabs = function() {
 		if(screenWidth <= 991 ){
 			jQuery('.menu-tabs .nav-link').on('click',function(){
@@ -164,7 +164,7 @@ var Gymove = function(){
 			});
 		}
 	}
-	
+
 	var handleChatbox = function() {
 		jQuery('.bell-link').on('click',function(){
 			jQuery('.chatbox').addClass('active');
@@ -173,7 +173,7 @@ var Gymove = function(){
 			jQuery('.chatbox').removeClass('active');
 		});
 	}
-	
+
 	var handleBtnNumber = function() {
 		$('.btn-number').on('click', function(e) {
 			e.preventDefault();
@@ -192,32 +192,32 @@ var Gymove = function(){
 			}
 		});
 	}
-	
+
 	var handleDzChatUser = function() {
 		jQuery('.dz-chat-user-box .dz-chat-user').on('click',function(){
 			jQuery('.dz-chat-user-box').addClass('d-none');
 			jQuery('.dz-chat-history-box').removeClass('d-none');
-		}); 
-		
+		});
+
 		jQuery('.dz-chat-history-back').on('click',function(){
 			jQuery('.dz-chat-user-box').removeClass('d-none');
 			jQuery('.dz-chat-history-box').addClass('d-none');
-		}); 
-		
+		});
+
 		jQuery('.dz-fullscreen').on('click',function(){
 			jQuery('.dz-fullscreen').toggleClass('active');
 		});
 	}
-	
+
 	var handleDzLoadMore = function() {
 		$(".dz-load-more").on('click', function(e)
 		{
 			e.preventDefault();	//STOP default action
 			$(this).append(' <i class="fa fa-refresh"></i>');
-			
+
 			var dzLoadMoreUrl = $(this).attr('rel');
 			var dzLoadMoreId = $(this).attr('id');
-			
+
 			$.ajax({
 				method: "POST",
 				url: dzLoadMoreUrl,
@@ -229,10 +229,10 @@ var Gymove = function(){
 			})
 		});
 	}
-	
+
 	var handleDzFullScreen = function() {
 		jQuery('.dz-fullscreen').on('click',function(e){
-			if(document.fullscreenElement||document.webkitFullscreenElement||document.mozFullScreenElement||document.msFullscreenElement) { 
+			if(document.fullscreenElement||document.webkitFullscreenElement||document.mozFullScreenElement||document.msFullscreenElement) {
 				/* Enter fullscreen */
 				if(document.exitFullscreen) {
 					document.exitFullscreen();
@@ -243,7 +243,7 @@ var Gymove = function(){
 				} else if(document.webkitExitFullscreen) {
 					document.webkitExitFullscreen(); /* Chrome, Safari & Opera */
 				}
-			} 
+			}
 			else { /* exit fullscreen */
 				if(document.documentElement.requestFullscreen) {
 					document.documentElement.requestFullscreen();
@@ -254,10 +254,10 @@ var Gymove = function(){
 				} else if(document.documentElement.msRequestFullscreen) {
 					document.documentElement.msRequestFullscreen();
 				}
-			}		
+			}
 		});
 	}
-	
+
 	var handlePerfectScrollbar = function() {
 		if(jQuery('.deznav-scroll').length > 0)
 		{
@@ -268,14 +268,14 @@ var Gymove = function(){
 		$(".heart").on("click", function() {
 			$(this).toggleClass("heart-blast");
 		});
-	}	
+	}
 	/* Function ============ */
 	return {
 		init:function(){
 			handleSelectPicker();
 			handleTheme();
-			handleMetisMenu();	
-			handleAllChecked();	
+			handleMetisMenu();
+			handleAllChecked();
 			handleNavigation();
 			handleCurrentActive();
 			handleCustomFileInput();
@@ -292,41 +292,41 @@ var Gymove = function(){
 			handleDzFullScreen();
 			handlePerfectScrollbar();
 			heartBlast();
-			
+
 		},
 
-		
+
 		load:function(){
 			handleSelectPicker();
 			handleTheme();
 		},
-		
+
 		resize:function(){
-			
-			
+
+
 		}
 	}
-	
+
 }();
 
-/* Document.ready Start */	
+/* Document.ready Start */
 jQuery(document).ready(function() {
     'use strict';
 	Gymove.init();
-	
+
 });
 /* Document.ready END */
 
 /* Window Load START */
 jQuery(window).on('load',function () {
-	'use strict'; 
+	'use strict';
 	Gymove.load();
-	
+
 });
 /*  Window Load END */
 /* Window Resize START */
 jQuery(window).on('resize',function () {
-	'use strict'; 
+	'use strict';
 	Gymove.resize();
 });
 /*  Window Resize END */

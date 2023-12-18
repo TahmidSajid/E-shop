@@ -2,7 +2,9 @@
 
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CustomerListController;
+use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\VariationsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,6 +23,7 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Auth::routes();
+
 // frontend routes
 Route::get('/',[App\Http\Controllers\FrontendController::class,'index'])->name('index');
 Route::get('/about',[App\Http\Controllers\FrontendController::class,'about'])->name('about');
@@ -32,6 +35,7 @@ Route::post('/user/login',[App\Http\Controllers\UserRegisterController::class,'u
 Route::get('/user/dashboard',[App\Http\Controllers\FrontendController::class,'user_dashboard'])->name('user_dashboard');
 Route::get('/contact/page',[App\Http\Controllers\FrontendController::class,'contact_page'])->name('contact');
 Route::post('/contact/page/form',[App\Http\Controllers\FrontendController::class,'contact_page_form'])->name('contact_form');
+Route::get('/product/view/{id}',[\App\Http\Controllers\FrontendController::class,'product_view'])->name('product_view');
 
 // dashboard routes
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -43,9 +47,14 @@ Route::get('/verify/phone/number',[App\Http\Controllers\ProfileController::class
 Route::post('/verify/otp',[App\Http\Controllers\ProfileController::class, 'otp_verify']);
 Route::get('/update/phone/number',[App\Http\Controllers\ProfileController::class, 'update_phone_number']);
 Route::post('/products',[App\Http\Controllers\ProductController::class, 'products_page'])->name('products');
+Route::get('/variation/select',[App\Http\Controllers\VariationsController::class, 'variation_select'])->name('variation_select');
+Route::get('/variation/product/{id}',[App\Http\Controllers\VariationsController::class, 'variation_select_view'])->name('variation_select_view');
+Route::get('/variations/{id}',[App\Http\Controllers\VariationsController::class, 'variations'])->name('variations');
 
 
 // category route package
 Route::resource('category', CategoryController::class);
 Route::resource('admins', UserController::class);
 Route::resource('customers', CustomerListController::class);
+Route::resource('products', ProductsController::class);
+// Route::resource('variation', VariationsController::class);

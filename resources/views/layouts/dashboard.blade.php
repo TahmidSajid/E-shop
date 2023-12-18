@@ -800,33 +800,6 @@
                     </li>
                     <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
                         <i class="flaticon-381-networking"></i>
-                        <span class="nav-text">Products</span>
-                        @php
-                            {{
-                            $prods_array = array();
-                            foreach($products as $key=>$product){
-                                $prods_array[$key]=$product;
-                            }
-                            $uniqe = array_unique($prods_array);
-                        }}
-                        @endphp
-                    </a>
-                    <ul aria-expanded="false">
-                        @foreach ($uniqe as $product )
-                        <li>
-                            <a href="#">
-                                <form action="{{route('products')}}" method="POST">
-                                    @csrf
-                                    <input class="d-none" type="text" name="slug" value="{{ $product->category_slug }}">
-                                    <button style="background: none; border:0" type="submit">{{ $product->category_slug }}</button>
-                                </form>
-                                </a>
-                            </li>
-                        @endforeach
-                    </ul>
-                    </li>
-                    <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
-                        <i class="flaticon-381-networking"></i>
                         <span class="nav-text">Users</span>
                     </a>
                     <ul aria-expanded="false">
@@ -834,6 +807,20 @@
                         <li><a href="{{ route('customers.index') }}">Customers</a></li>
                     </ul>
                     </li>
+                    <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+                        <i class="flaticon-381-networking"></i>
+                        <span class="nav-text">Products</span>
+                    </a>
+                    <ul aria-expanded="false">
+                        <li><a href="{{ route('products.create') }}">Add Products</a></li>
+                        <li><a href="{{ route('products.index') }}">View Products</a></li>
+                    </ul>
+                    </li>
+                    <li><a class="has-arrow ai-icon" href="{{ route('variation_select') }}" aria-expanded="false">
+                        <i class="flaticon-381-networking"></i>
+                        <span class="nav-text">Variations</span>
+                    </a>
+                </li>
                 </ul>
 				<div class="add-menu-sidebar">
 					<img src="images/calendar.png" alt="" class="mr-3">
@@ -947,5 +934,33 @@
 			}, 1000);
 		});
 	</script>
+    <script src="{{asset('dashboard-assets')}}/js/hand-made.js" type="module"></script>
+    <script type="text/javascript" src="{{asset('dashboard-assets')}}/js/ntc.js"></script>
+
+    <script type="text/javascript">
+
+    let color_input = document.querySelector("#color_pick");
+    let color_code = document.querySelector("#color_code");
+    let color_name = document.querySelector("#color_name");
+    color_input.addEventListener("input",(e)=>{
+    var color = e.target.value;
+    var ColorCode = color;
+    var ntcMatch  = ntc.name(ColorCode);
+    color_name.setAttribute('value',ntcMatch[1]);
+    })
+
+    </script>
+    <script>
+       let color_code_table = document.querySelectorAll("#color_code_table");
+       let color_name_table = document.querySelectorAll("#color_name_table");
+       var color_code_all = Array.from(color_code_table);
+       var color_name_all = Array.from(color_name_table);
+       color_code_all.forEach((element,index) => {
+
+            var FindColor = ntc.name(element.innerHTML)
+
+            color_name_all[index].innerHTML = FindColor[1];
+       });
+    </script>
 </body>
 </html>

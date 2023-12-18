@@ -20,8 +20,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        view()->composer('layouts.dashboard',function($views){
-            $views->with('products',categories::select('category_slug')->get());
-        });
+
     }
 }
