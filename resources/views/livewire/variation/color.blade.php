@@ -65,13 +65,46 @@
                                     <td id="color_code_table">{{ $color->color_code }}</td>
                                     <td id="color_name_table"></td>
                                     <td>
-                                        <div style="border-radius: 50%; height:65px; background-color:{{  $color->color_code }};"></div>
+                                        <div
+                                            style="border-radius: 50%; height:65px; width: 65px; background-color:{{ $color->color_code }}; margin:0 auto;">
+                                        </div>
                                     </td>
                                     <td>
                                         <button type="button" wire:click = "delete({{ $color->id }})"
-                                            class="btn btn-sm btn-danger">
-                                            <i class="fa fa-close"></i>
+                                            class="btn btn-sm btn-danger" style="border-radius: 50%">
+                                            <i class="fa-solid fa-trash"></i>
                                         </button>
+                                        <button type="button"  wire:click= "editColor({{ $color->id }})" class="btn btn-sm btn-info" style="border-radius: 50%"
+                                            data-toggle="modal" data-target="#editColor">
+                                            <i class="fa-solid fa-pen-fancy"></i>
+                                        </button>
+                                        <!-- Button trigger modal -->
+                                        <!-- Modal -->
+                                        <div wire:ignore.self class="modal fade" id="editColor" tabindex="-1"
+                                            aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                                        <button type="button" class="close" data-dismiss="modal"
+                                                            aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <form>
+                                                            <input type="color" wire:model = "code">
+                                                        </form>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary"
+                                                            data-dismiss="modal">Close</button>
+                                                        <button type="button" class="btn btn-primary">Save
+                                                            changes</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </td>
                                 </tr>
                             @empty

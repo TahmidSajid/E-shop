@@ -46,9 +46,10 @@
                                 <thead>
                                     <tr>
                                         <th>SL no</th>
-                                        <th>NAME</th>
+                                        <th>Name</th>
                                         <th>Email</th>
                                         <th>Created at</th>
+                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -56,9 +57,11 @@
                                         <tr>
                                             <td><strong>{{ $key + 1 }}</strong></td>
                                             <td>
-                                                <div class="d-flex align-items-center"><img src="images/avatar/1.jpg"
-                                                        class="rounded-lg mr-2" width="24" alt="" /> <span
-                                                        class="w-space-no">{{ $admin->name }}</span></div>
+                                                <div>
+                                                    <img src="images/avatar/1.jpg" class="rounded-lg mr-2" width="24"
+                                                        alt="" />
+                                                        <span class="w-space-no">{{ $admin->name }}</span>
+                                                    </div>
                                             </td>
                                             <td>{{ $admin->email }} </td>
                                             <td>{{ $admin->created_at }}</td>
@@ -92,58 +95,59 @@
             </div>
         </div>
     @else
-    <div class="col-lg-8 offset-lg-2">
-        <div class="card">
-            <div class="card-header">
-                <h4 class="card-title">Customers</h4>
-            </div>
-            <div class="card-body">
-                <div class="table-responsive">
-                    <table class="table table-responsive-md">
-                        <thead>
-                            <tr>
-                                <th>SL no</th>
-                                <th>NAME</th>
-                                <th>Email</th>
-                                <th>Created at</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @forelse ($customers as $key => $customer)
+        <div class="col-lg-8 offset-lg-2">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">Customers</h4>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-responsive-md">
+                            <thead>
                                 <tr>
-                                    <td><strong>{{ $key + 1 }}</strong></td>
-                                    <td>
-                                        <div class="d-flex align-items-center"><img src="images/avatar/1.jpg"
-                                                class="rounded-lg mr-2" width="24" alt="" /> <span
-                                                class="w-space-no">{{ $customer->name }}</span></div>
-                                    </td>
-                                    <td>{{ $customer->email }} </td>
-                                    <td>{{ $customer->created_at }}</td>
-                                    <td>
-                                        <div class="d-flex">
+                                    <th>SL no</th>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Created at</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @forelse ($customers as $key => $customer)
+                                    <tr>
+                                        <td><strong>{{ $key + 1 }}</strong></td>
+                                        <td>
+                                            <div>
+                                                <img src="images/avatar/1.jpg" class="rounded-lg mr-2" width="24"
+                                                    alt="" />
+                                                <span class="w-space-no">{{ $customer->name }}</span>
+                                            </div>
+                                        </td>
+                                        <td>{{ $customer->email }} </td>
+                                        <td>{{ $customer->created_at }}</td>
+                                        <td>
+                                            <div class="d-flex">
                                                 <a href="{{ route('profile_page') }}"
                                                     class="btn btn-primary shadow btn-xs sharp mr-1"><i
                                                         class="fa fa-pencil"></i></a>
-                                                <form action="#"
-                                                    method="POST">
+                                                <form action="#" method="POST">
                                                     @csrf
                                                     @method('delete')
-                                                    <button class="btn btn-danger shadow btn-xs sharp"
-                                                        type="submit">
+                                                    <button class="btn btn-danger shadow btn-xs sharp" type="submit">
                                                         <i class="fa fa-trash"></i>
                                                     </button>
                                                 </form>
-                                        </div>
-                                    </td>
-                                </tr>
-                            @empty
-                            @endforelse
-                        </tbody>
-                    </table>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                @empty
+                                @endforelse
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
     @endif
 
 @endsection

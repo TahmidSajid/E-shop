@@ -12,9 +12,6 @@ class Color extends Component
     #[Validate('required')]
     public $code = " ";
 
-    #[Validate('required')]
-    public $name = " ";
-
     public $prduct = " ";
 
     public function add_color(){
@@ -24,10 +21,15 @@ class Color extends Component
             'product_id' => $this->prduct,
             'created_at'=> Carbon::now(),
         ]);
-        $this->reset('code','name');
+        $this->reset('code');
     }
     public function delete($id){
         Colors::where('id',$id)->delete();
+    }
+    public function editColor($id){
+        $old_values = Colors::where('id',$id)->first();
+        $this->code = $old_values->color_code;
+        $this->prduct = $old_values->product_id;
     }
     public function render()
     {
